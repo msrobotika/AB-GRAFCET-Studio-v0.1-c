@@ -1,5 +1,10 @@
 # AB-GRAFCET Studio 0.2 · MS ROBOTIKA
 
+> **Ficha del proyecto · MS ROBOTIKA**  
+> **Área:** Editor y simulador GRAFCET · **Estado:** v0.2 · simulador experimental (repositorio privado)  
+> **Evidencia:** [CI y pruebas](https://github.com/msrobotika/AB-GRAFCET-Studio-v0.1-c/actions) · [Capturas](docs/screenshots/) · [Estado técnico](docs/PROJECT_STATUS.md)  
+> **Límite:** No existe exportación certificada KOP/SFC ni conexión física con PLC.
+
 **Editor y simulador GRAFCET original · Código abierto MIT · En español · Windows/Linux/macOS · 100 % local**
 
 Versión mejorada de nuestro editor didáctico de secuencias industriales, basado en conceptos de GRAFCET. Permite construir etapas, receptividades y acciones virtuales, comprender por qué una transición no avanza y comprobar ciclos sin accionar maquinaria.
