@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="es"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#0d1724"><meta name="description" content="AB-GRAFCET Studio: editor, simulador y diagnóstico secuencial gratuito de MS ROBOTIKA.">
+<title>AB-GRAFCET Studio · MS ROBOTIKA</title>
+<style>
+/* SPDX-License-Identifier: MIT · Copyright (c) 2026 MS ROBOTIKA */
+:root{font-family:Inter,'Segoe UI',Arial,system-ui,sans-serif;color:#213445;background:#f3f6f8;--navy:#0d1b2b;--mint:#137d69;--mint-light:#e7f6f0;--muted:#7c8e9d;--line:#e3eaf0;--white:#fff;font-synthesis:none}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0}button,input,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible,svg [tabindex]:focus-visible{outline:3px solid #41b4a1;outline-offset:3px}button:disabled{opacity:.5;cursor:not-allowed}a{color:inherit;text-decoration:none}input,textarea{color:#244252;width:100%;padding:11px 12px;border:1px solid #d7e2e9;background:#fdfefe;border-radius:7px;font-size:12px}textarea{resize:vertical}label{display:block;font-size:11px;font-weight:700;color:#63798a;margin:11px 0 7px}.shell{display:flex;min-height:100vh;align-items:stretch}.side{position:fixed;left:0;top:0;bottom:0;width:235px;background:var(--navy);color:#94aaba;padding:29px 18px 21px;display:flex;flex-direction:column;z-index:10}.brand{display:flex;align-items:center;gap:12px;color:#f2f8fa;font-size:12px;letter-spacing:.8px;font-weight:850;white-space:nowrap}.brand-icon{font-size:27px;letter-spacing:-3px;line-height:1;padding:9px;border:1px solid #334858;border-radius:9px}.brand-icon span{color:#67deb5}.brand small{display:block;color:#7792a5;font-size:8px;letter-spacing:1.2px;margin-top:7px}.side-divider{height:1px;background:#203547;margin:32px 0}.nav-caption,.eyebrow{font-weight:850;font-size:9px;letter-spacing:1.5px;color:#8a9cab;margin:0 0 13px}.nav-caption{color:#638098;margin:0 10px 14px}.nav{display:flex;align-items:center;gap:12px;padding:13px 10px;color:#b0bfcc;border-radius:8px;margin:4px 0;font-size:11px}.nav:hover{background:#1a3244}.nav.active{background:#203d44;color:#c4f8e6}.nav .ico{font-size:18px;line-height:1;color:#a1b6c5;width:19px;text-align:center}.nav.active .ico{color:#6addb7}.nav-dot{margin-left:auto;width:5px;height:5px;background:#67dfbb;border-radius:50%}.side-spacer{flex:1}.side-box{background:#182d3b;border:1px solid #294454;border-radius:9px;padding:16px;margin-bottom:30px}.side-box-icon{color:#76e9c5;font-size:20px;margin-bottom:9px}.side-box b{display:block;color:#d1eee3;font-size:11px}.side-box p{font-size:10px;line-height:1.7;margin-bottom:0;color:#8ea6b6}.side-foot{color:#a2bfbd;font-size:10px;padding:0 8px}.side-foot small{display:block;color:#698395;margin-top:10px}.good-dot{display:inline-block;width:6px;height:6px;background:#63e6b2;border-radius:50%;margin-right:5px}main{min-width:0;margin-left:235px;padding:34px 34px 22px;max-width:1600px;width:calc(100% - 235px)}.top{display:flex;justify-content:space-between;align-items:flex-start;gap:18px;margin-bottom:21px}h1{font-size:31px;margin:0;letter-spacing:-1.2px;font-weight:800;color:#142f40}h1 span{color:#12846b}h1 em{display:inline-block;vertical-align:middle;font-style:normal;font-size:10px;font-weight:850;letter-spacing:.2px;padding:6px 8px;border-radius:5px;background:#e5f0f3;color:#72919b;margin-left:8px}.subtitle{font-size:12px;color:#7d909e;margin:9px 0 0}.top-right{display:flex;align-items:center;gap:12px;margin-top:10px}.offline{color:#13826a;background:#e0f5ec;padding:9px 12px;font-size:9px;font-weight:850;border-radius:5px;white-space:nowrap;letter-spacing:.8px}.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:#39bf97;margin-right:5px}.button{background:white;border:1px solid #d7e2e9;border-radius:7px;padding:10px 14px;color:#314b59;font-size:11px;font-weight:750;white-space:nowrap;min-height:37px}.button:hover{background:#eef6f3}.button.primary{background:#14836c;border-color:#14836c;color:white}.button.primary:hover{background:#0c715d}.button.ghost,.button.subtle{background:transparent;border-color:transparent}.button.light{padding:9px 12px}.iconbutton{font-size:18px;line-height:1;padding:8px 11px}.safety{display:flex;gap:13px;align-items:center;background:#ebf7f1;border:1px solid #cee9da;border-radius:9px;padding:12px 17px;color:#246b51;margin-bottom:21px}.safety .shield{font-size:23px;color:#168c69}.safety>div{flex:1}.safety b{display:block;font-size:12px}.safety span{font-size:10px;line-height:1.6}.safety strong{font-size:9px;letter-spacing:.7px;background:#d9f0e3;border-radius:4px;padding:7px 8px}.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}.metric{background:white;border:1px solid var(--line);border-radius:9px;padding:18px 19px 16px;min-width:0}.metric-label{font-size:9px;color:#8396a4;letter-spacing:1px;font-weight:850;display:flex;justify-content:space-between}.metric-glyph{color:#91a5b1;font-size:16px}.metric-row{display:flex;gap:12px;align-items:center;min-height:46px}.metric-row strong{font-size:29px;color:#1a3b4e;font-variant-numeric:tabular-nums}.metric-sub{font-size:10px;color:#25836d;font-weight:800;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.metric small{font-size:9px;color:#a0afb8}.metric-status{display:inline-block;background:#e6f4ed;color:#0e8765;border-radius:5px;padding:8px 11px;font-size:11px;font-weight:850;letter-spacing:.8px}.metric-status.error{color:#bc4545;background:#ffeee8}.notice{font-size:11px;min-height:42px;padding:13px 3px;color:#6a8b81}.notice.error{color:#be4d45}.panel{background:white;border:1px solid var(--line);border-radius:10px;min-width:0}.workbench{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:17px}.canvas-panel,.inspector,.io-panel,.history-panel,.control-panel,.project-panel{padding:20px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:15px}.section-head .eyebrow{margin-bottom:7px}.section-head h2{font-size:16px;color:#243b4c;letter-spacing:-.2px;margin:0}.toolbar{display:flex;gap:6px;align-items:center}.diagram-hint{display:flex;gap:16px;align-items:center;flex-wrap:wrap;font-size:9px;color:#8195a2;margin-bottom:13px}.diagram-hint span{display:flex;align-items:center;gap:6px}.diagram-hint .drag-tip{margin-left:auto}.legend{width:9px;height:9px;border-radius:3px;display:inline-block;border:1px solid #8199a8}.active-legend{background:#34b88f;border-color:#34b88f}.transition-legend{background:#eca957;border-color:#eca957}.diagram-viewport{background:#f9fbfc;border:1px solid #ecf0f3;border-radius:8px;overflow:auto;min-height:600px}.diagram-viewport svg{width:100%;min-width:530px;height:610px;display:block;touch-action:pan-y}.diagram-viewport svg .stage,.diagram-viewport svg .transition{cursor:pointer}.diagram-viewport svg .stage:hover .stage-box,.diagram-viewport svg .transition:hover .transition-bar{stroke:#179a82!important;stroke-width:3}.diagram-viewport svg .stage:focus-visible .stage-box,.diagram-viewport svg .transition:focus-visible .transition-bar{stroke:#18a884;stroke-width:4}.canvas-footer{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;padding-top:12px;color:#91a0ad;font-size:10px}.inspector{display:flex;flex-direction:column}.inspector-head{margin-bottom:4px}.inspector-icon{color:#85a3ae;font-size:22px}.inspector #inspector-content{flex:1}.inspector p{font-size:11px;line-height:1.7;color:#8194a2}.inspector .editable-title{font-size:12px;font-weight:800;color:#254457;margin:13px 0}.inspector .field-hint{display:block;color:#92a4b0;font-size:10px;line-height:1.5;margin-top:5px}.inspector .checkbox-line{display:flex;align-items:center;gap:9px;font-size:11px;margin:17px 0}.inspector .checkbox-line input{width:auto;accent-color:#13856d}.inspector .edit-actions{display:flex;gap:8px;margin-top:18px;flex-wrap:wrap}.inspector .edit-actions button{flex:1}.inspector .delete{border-color:#f1dad6;color:#b45243}.inspector .badge-id{font-size:10px;background:#e7f1f5;color:#547b8c;border-radius:5px;padding:5px 8px}.inspector .list-note{font-size:10px;background:#f5f8fa;border-radius:7px;padding:11px;margin-top:16px}.control-panel{margin-top:18px}.control-heading{display:flex;justify-content:space-between;align-items:center;gap:20px}.control-heading h2{font-size:17px;margin:0}.control-heading p:last-child{font-size:10px;color:#8797a2}.sim-actions{display:flex;gap:8px;flex-wrap:wrap}.sim-message{margin-top:12px;border-top:1px solid #ebf0f3;padding-top:12px;font-size:11px;color:#698478}.sim-message.warn{color:#bd5b45}.bottom-grid{display:grid;grid-template-columns:1fr 1fr;gap:17px;margin-top:17px}.hint{font-size:11px;line-height:1.65;color:#8396a3;margin:0 0 13px}.input-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}.signal-row{border:1px solid #e4ecf1;border-radius:7px;padding:12px;display:flex;justify-content:space-between;align-items:center;gap:6px;cursor:pointer}.signal-label{font-size:11px;color:#436173;font-family:Consolas,monospace;font-weight:650;word-break:break-word}.signal-row .state{font-size:9px;color:#93a6af;font-weight:850}.signal-row.on{background:#f0faf5;border-color:#b8e9d7}.signal-row.on .state{color:#0b8c6d}.switch{width:31px;height:18px;background:#d1dee5;border-radius:14px;position:relative;flex-shrink:0}.switch::after{content:'';position:absolute;top:3px;left:3px;height:12px;width:12px;background:white;border-radius:50%;transition:transform .15s}.signal-row.on .switch{background:#1eaf82}.signal-row.on .switch::after{transform:translateX(13px)}.section-line{height:1px;background:#edf1f4;margin:19px 0}.soft-tag{font-size:9px;font-weight:750;letter-spacing:.6px;background:#eef4f6;color:#8497a2;border-radius:5px;padding:7px 9px}.output-list{display:flex;flex-wrap:wrap;gap:8px;min-height:36px}.output{font-size:10px;font-family:Consolas,monospace;padding:8px 10px;border-radius:6px;border:1px solid #e3eaf0;color:#8494a0}.output.on{color:#098460;border-color:#bde7d5;background:#ebf9f1;font-weight:750}.history-list{height:240px;overflow:auto}.event{display:flex;gap:11px;padding:12px 3px;border-bottom:1px solid #edf1f3}.event .event-icon{width:25px;height:25px;border-radius:6px;background:#e9f5f0;color:#139573;display:grid;place-items:center;font-size:12px;flex-shrink:0}.event.warning .event-icon{background:#fff0e6;color:#bd6840}.event-main{flex:1;min-width:0}.event-main strong{font-size:11px;font-weight:700;color:#34596b;display:block}.event-main small{font-size:10px;color:#96a6ae;display:block;margin-top:4px;line-height:1.4}.event time{font-size:10px;color:#99a9b2;white-space:nowrap}.history-footer{display:flex;justify-content:space-between;gap:10px;align-items:center;padding-top:13px;color:#98a8b0;font-size:9px}.text-btn{border:0;background:none;color:#198974;font-size:10px;font-weight:800}.project-panel{margin-top:17px}.project-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:34px}.project-form label:first-child{margin-top:0}.file-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:15px}.file-label{display:inline-block;margin:0;line-height:16px}.file-label input{display:none}.diagnostic{background:#f8fbfc;padding:17px;border:1px solid #edf1f4;border-radius:9px}.diagnostic h3{font-size:12px;margin:0 0 12px}.diagnostic .check{font-size:11px;color:#308969;margin:8px 0}.diagnostic .issue{color:#a46d38;font-size:11px;margin:8px 0;line-height:1.55}.diagnostic p{font-size:10px;color:#94a4ae;line-height:1.6;margin-top:15px}footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:9px;margin-top:16px;font-size:9px;color:#99a7b1}footer a{color:#17856f}.dialog-backdrop{position:fixed;inset:0;background:#101e2ab0;z-index:20;display:grid;place-items:center;padding:18px}.dialog-backdrop[hidden]{display:none}.dialog{width:min(580px,100%);background:white;color:#284352;border-radius:12px;padding:25px;box-shadow:0 16px 65px #0003}.dialog p{font-size:12px;line-height:1.7;color:#597482}.dialog code{background:#eef5f4;padding:1px 4px;border-radius:3px}.empty{font-size:11px;color:#a2b1ba;padding:15px}.error-box{background:#fceeea;color:#af5447;border-radius:6px;padding:10px;font-size:11px}
+@media(min-width:1450px){main{padding:38px 42px}}
+@media(max-width:1190px){.side{width:197px;padding:23px 12px}main{width:calc(100% - 197px);margin-left:197px;padding:26px 21px}.workbench{grid-template-columns:minmax(0,1fr) 260px}.metric{padding:14px}.toolbar{flex-wrap:wrap;justify-content:end}}
+@media(max-width:980px){.side{position:relative;width:100%;padding:15px 20px;flex-direction:row;gap:15px;align-items:center}.shell{display:block}.side-divider,.nav-caption,.side-spacer,.side-box,.side-foot{display:none}.side nav{display:flex;overflow:auto;gap:4px}.side .nav{margin:0;padding:10px 9px;white-space:nowrap}.side .nav .ico{display:none}.side .brand{flex-shrink:0}main{width:100%;margin:0;padding:24px 22px}.workbench{grid-template-columns:1fr 270px}}
+@media(max-width:740px){.side{display:block;padding:13px 14px}.side nav{margin-top:13px}.side .brand{font-size:10px}.top{flex-direction:column}.top-right{margin:0}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.workbench,.bottom-grid,.project-grid{grid-template-columns:1fr}.diagram-viewport{min-height:500px}.diagram-viewport svg{height:500px}.control-heading{flex-direction:column;align-items:start}.sim-actions{width:100%}.sim-actions button{flex:1}.safety strong{display:none}.inspector{min-height:250px}.toolbar{gap:4px}.canvas-panel,.inspector,.io-panel,.history-panel,.control-panel,.project-panel{padding:16px}main{padding:21px 13px}.section-head h2{font-size:15px}h1{font-size:27px}}
+@media(max-width:430px){.input-list{grid-template-columns:1fr}.toolbar .button{font-size:10px;padding:8px}.metrics{gap:7px}.metric{padding:12px}.metric-row strong{font-size:25px}.metric-label{font-size:8px}.diagram-hint .drag-tip{display:none}.safety{padding:11px}.sim-actions button{font-size:10px;padding:8px 9px}.file-actions .button{flex:1}}
+
+/* AB-GRAFCET v0.2: dynamic diagnostics and engineering UI */
+.decision-panel{margin-top:18px;padding:20px}.reason-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.reason-row{background:#f8fafc;border:1px solid #e1eaf0;border-radius:8px;padding:13px 14px;min-width:0;display:flex;flex-direction:column;gap:8px}
+.reason-row.ready{background:#ebf8f1;border-color:#a9dfc7}
+.reason-main{display:flex;justify-content:space-between;align-items:start;gap:8px}.reason-main b{font-size:12px;color:#294959}.reason-main small{font:10px Consolas,monospace;color:#8598a5}
+.reason-explain{display:flex;justify-content:space-between;gap:10px;align-items:center;flex-wrap:wrap}
+.reason-expression{font:11px/1.5 Consolas,monospace;color:#577180;overflow-wrap:anywhere}
+.reason-state{font-size:9px;font-weight:750;color:#9c7048;background:#fdf2e7;border-radius:4px;padding:5px 7px}
+.reason-state.green{color:#0e7f59;background:#d4f1e0}
+@media(max-width:740px){.reason-grid{grid-template-columns:1fr}.decision-panel{padding:16px}}
+
+</style>
+</head><body>
+<div class="shell">
+<aside class="side">
+  <div class="brand"><div class="brand-icon">AB<span>·</span></div><div>MS ROBOTIKA<small>OPEN INDUSTRIAL TOOLS</small></div></div>
+  <div class="side-divider"></div>
+  <p class="nav-caption">ÁREA DE TRABAJO</p>
+  <nav aria-label="Navegación principal">
+  <a class="nav active" href="#editor"><span class="ico">⌘</span> Editor GRAFCET <span class="nav-dot"></span></a>
+  <a class="nav" href="#signals"><span class="ico">◈</span> Entradas y salidas</a>
+  <a class="nav" href="#events"><span class="ico">≋</span> Historial de simulación</a>
+  <a class="nav" href="#project-info"><span class="ico">▤</span> Proyecto</a>
+  </nav>
+  <div class="side-spacer"></div><div class="side-box"><div class="side-box-icon">◇</div><b>Simulación aislada</b><p>Nunca escribe en PLC ni acciona maquinaria. Motor de lógica local.</p></div>
+  <div class="side-foot"><span class="good-dot"></span> Motor GRAFCET disponible <small>v0.2.0 · Licencia MIT</small></div>
+</aside>
+<main>
+<header class="top"><div><p class="eyebrow">EDITOR SECUENCIAL / SIMULADOR OFFLINE</p><h1>AB-GRAFCET <span>Studio</span> <em>v0.2</em></h1><p class="subtitle">Diseña etapas, programa receptividades y verifica el ciclo antes de implementar tu PLC.</p></div><div class="top-right"><span class="offline"><span class="dot"></span> 100% LOCAL</span><button id="help" class="button ghost" type="button">? Ayuda</button></div></header>
+<div class="safety"><span class="shield">♢</span><div><b>Editor y simulador de especificaciones</b><span>GRAFCET descriptivo (IEC 60848); no es un compilador SFC ni genera KOP listo para producción. Ninguna salida física está conectada.</span></div><strong>SOLO SIMULACIÓN</strong></div>
+<section class="metrics" aria-label="Estado de simulación">
+  <div class="metric"><div class="metric-label">ETAPAS ACTIVAS <span class="metric-glyph">▣</span></div><div class="metric-row"><strong id="metric-active">1</strong><span class="metric-sub" id="active-label">E0</span></div><small>Marcado actual del GRAFCET</small></div>
+  <div class="metric"><div class="metric-label">TRANSICIONES <span class="metric-glyph">⇢</span></div><div class="metric-row"><strong id="metric-transitions">04</strong><span class="metric-sub">definidas</span></div><small>Conexiones y receptividades</small></div>
+  <div class="metric"><div class="metric-label">SALIDAS ACTIVAS <span class="metric-glyph">⚡</span></div><div class="metric-row"><strong id="metric-outputs">01</strong><span class="metric-sub" id="output-label">LISTO</span></div><small>Simuladas · sin hardware</small></div>
+  <div class="metric"><div class="metric-label">ESTADO DEL MOTOR <span class="metric-glyph">◎</span></div><div class="metric-row"><span id="metric-status" class="metric-status">LISTO</span></div><small id="metric-cycles">Ciclo 0 · preparado</small></div>
+</section>
+<div id="notice" class="notice" role="status" aria-live="polite">Proyecto de demostración cargado. Activa las entradas y avanza el ciclo.</div>
+<section id="editor" class="workbench">
+  <div class="canvas-panel panel"><div class="section-head"><div><p class="eyebrow">PLANO DE CONTROL</p><h2>Editor gráfico GRAFCET</h2></div><div class="toolbar"><button id="undo-edit" class="button light" title="Deshacer último cambio del esquema" type="button">↶ Deshacer</button><button id="redo-edit" class="button light" title="Rehacer último cambio" type="button">↷ Rehacer</button><button id="add-stage" class="button light" type="button">＋ Etapa</button><button id="add-transition" class="button light" type="button">＋ Transición</button><button id="fit" class="button iconbutton" title="Encajar esquema" type="button">⤢</button></div></div>
+    <div class="diagram-hint"><span><i class="legend active-legend"></i> Etapa activa</span><span><i class="legend inactive-legend"></i> Etapa inactiva</span><span><i class="legend transition-legend"></i> Transición habilitada</span><span class="drag-tip">Arrastra las etapas para colocarlas</span></div>
+    <div class="diagram-viewport" id="diagram-viewport"><svg id="diagram" role="img" aria-label="Editor gráfico interactivo de etapas y transiciones del GRAFCET" viewBox="0 0 850 835" xmlns="http://www.w3.org/2000/svg"><text x="425" y="410" text-anchor="middle">Cargando editor…</text></svg></div>
+    <div class="canvas-footer"><span id="diagram-details">4 etapas · 4 transiciones</span><span id="select-info">Selecciona un símbolo para editarlo</span></div>
+  </div>
+  <aside class="inspector panel"><div class="section-head inspector-head"><div><p class="eyebrow">PROPIEDADES</p><h2>Inspector de elementos</h2></div><span class="inspector-icon">◈</span></div><div id="inspector-content"><p>Selecciona una etapa o una transición en el esquema.</p></div></aside>
+</section>
+<section class="control-panel panel" aria-label="Controles del simulador"><div class="control-heading"><div><p class="eyebrow">MOTOR DE SIMULACIÓN</p><h2>Ejecutar secuencia</h2><p>Los cambios de entradas se reflejan en el siguiente avance.</p></div><div class="sim-actions"><button id="reset" class="button" type="button">↺ Reiniciar</button><button id="back" class="button" type="button">◁ Ciclo anterior</button><button id="step" class="button primary" type="button">▶ Avanzar 1 ciclo</button><button id="run" class="button" type="button">▷ Auto · 1s</button></div></div><div id="sim-message" class="sim-message">Esperando condiciones de transición</div></section>
+<section class="panel decision-panel" id="decisions"><div class="section-head"><div><p class="eyebrow">DIAGNÓSTICO DINÁMICO</p><h2>Por qué avanza (o no) cada transición</h2></div><span class="soft-tag">MARCADO + ENTRADAS</span></div>
+<p class="hint">Actualiza las entradas para ver las receptividades, etapas precedentes faltantes y transiciones habilitadas. No ejecuta el ciclo automáticamente.</p><div id="transition-table" class="reason-grid"></div></section>
+<section class="bottom-grid"><div class="panel io-panel" id="signals"><div class="section-head"><div><p class="eyebrow">ENTRADAS DIGITALES</p><h2>Banco de señales</h2></div><span class="soft-tag">BOOLEANAS</span></div><p class="hint">Activa o desactiva señales para comprobar cuándo puede evolucionar el GRAFCET.</p><div id="inputs" class="input-list"></div><div class="section-line"></div><div class="section-head"><div><p class="eyebrow">ACTIVACIONES</p><h2>Salidas virtuales</h2></div><span class="soft-tag">SIMULADAS</span></div><div id="outputs" class="output-list"></div></div>
+<div class="panel history-panel" id="events"><div class="section-head"><div><p class="eyebrow">REGISTRO DE EVENTOS</p><h2>Trazabilidad del ciclo</h2></div><button id="clear-log" class="button subtle" type="button">Limpiar</button></div><div id="history" class="history-list"></div><div class="history-footer"><span>Se conservan los últimos 150 eventos en esta pestaña.</span><button id="export-log" class="text-btn" type="button">Exportar CSV ↗</button></div></div>
+</section>
+<section id="project-info" class="project-panel panel"><div class="section-head"><div><p class="eyebrow">GESTIÓN DEL PROYECTO</p><h2>Archivo y diagnóstico</h2></div><span class="soft-tag">JSON · SVG</span></div><div class="project-grid"><div class="project-form"><label for="project-name">Nombre del GRAFCET</label><input id="project-name" maxlength="90"><label for="project-desc">Descripción</label><textarea id="project-desc" rows="2" maxlength="300"></textarea><div class="file-actions"><button id="save-project" class="button primary" type="button">↓ Exportar JSON</button><label class="button file-label" for="import-project">↑ Importar JSON<input type="file" id="import-project" accept=".json,application/json"></label><button id="export-svg" class="button" type="button">↓ Exportar SVG</button><button id="export-report" class="button" type="button">↓ Informe HTML</button><button id="load-demo" class="button subtle" type="button">Restaurar ejemplo</button></div></div><div class="diagnostic"><h3>Comprobaciones del esquema</h3><div id="diagnostic-list"></div><p>Sin conexión ni compilación para PLC. Revisa la seguridad de cualquier implementación física por separado.</p></div></div></section>
+<footer><span>© 2026 MS ROBOTIKA · AB-GRAFCET Studio · MIT</span><span>Diseño y motor originales · ejecución sin red · <a href="README.md">Documentación</a></span></footer>
+</main></div>
+<div class="dialog-backdrop" id="help-dialog" hidden><div class="dialog" role="dialog" aria-modal="true" aria-labelledby="help-title"><div class="section-head"><h2 id="help-title">Guía rápida de AB-GRAFCET</h2><button id="close-help" class="button" type="button">✕</button></div><p><b>Etapa:</b> representa una situación activa; sus acciones son salidas virtuales. <b>Transición:</b> se dispara si todas las etapas precedentes están activas y su receptividad es verdadera.</p><p><b>Expresiones:</b> utiliza <code>marcha AND seguridad</code>, <code>sensor OR manual</code>, <code>NOT averia</code>, paréntesis y constantes <code>1</code>/<code>0</code>. Se admiten <code>&amp;&amp;</code>, <code>||</code> y <code>!</code>. No se evalúa JavaScript ni se comunica con equipos reales.</p><p><b>Divergencias:</b> dos transiciones simultáneas que consumen la misma etapa se consideran un conflicto de exclusividad y la simulación se bloquea. Las transiciones independientes se disparan juntas. <b>Diagnóstico dinámico:</b> debajo del simulador puedes consultar cuáles están habilitadas, qué receptividades son falsas y qué etapas faltan. Se puede crear sincronización Y usando varios orígenes y destinos.</p><p>Usa <b>Deshacer/Rehacer</b> para recuperar ediciones del esquema, <b>Ciclo anterior</b> para retroceder el estado del simulador y <b>Informe HTML</b> para generar una memoria imprimible de etapas, transiciones y acciones.</p><p>El motor aplica <b>un paso de evolución por pulsación o intervalo</b>, sin cadenas automáticas de transición en tiempo cero. Funciona como simulador didáctico parcial de GRAFCET, no como sustituto conforme de IEC 60848.</p></div></div>
+<script>
+/* SPDX-License-Identifier: MIT · Copyright (c) 2026 MS ROBOTIKA
+   Motor de simulación GRAFCET educativo; no genera código PLC ejecutable. */
+(function (root, factory) {
+  const engine = factory();
+  if (typeof module === 'object' && module.exports) module.exports = engine;
+  root.ABGrafcet = engine;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+  const VERSION = 1;
+  const ident = /^[A-Za-z_][A-Za-z0-9_]*$/;
+  const stageId = /^[A-Z][A-Z0-9_]*$/;
+  const MAX_STAGES = 40, MAX_TRANSITIONS = 80;
+  const forbidden = new Set(['__proto__','prototype','constructor']);
+  const tokensOf = expr => {
+    if (typeof expr !== 'string' || expr.length > 256) throw Error('La receptividad debe tener entre 1 y 256 caracteres.');
+    const tokens = []; let i = 0;
+    while (i < expr.length) {
+      if (/\s/.test(expr[i])) { i++; continue; }
+      const v = expr.slice(i).match(/^(\&\&|\|\||[()!&|]|[A-Za-z_][A-Za-z0-9_]*|[01])/);
+      if (!v) throw Error(`Carácter inválido en la receptividad: ${expr[i]}`);
+      let t = v[0]; i += t.length;
+      if (t === '&&' || t === '&') t = 'AND';
+      if (t === '||' || t === '|') t = 'OR';
+      if (t === '!') t = 'NOT';
+      if (/^(AND|OR|NOT|TRUE|FALSE)$/i.test(t)) t = t.toUpperCase();
+      tokens.push(t);
+      if (tokens.length > 100) throw Error('Receptividad demasiado compleja.');
+    }
+    if (!tokens.length) throw Error('La receptividad no puede estar vacía.');
+    return tokens;
+  };
+  const parseCondition = expression => {
+    const tok = tokensOf(expression); let i = 0;
+    function primary() {
+      const x = tok[i++];
+      if (x === undefined) throw Error('Falta operando en la receptividad.');
+      if (x === 'NOT') return {op:'not',child:primary()};
+      if (x === '(') { const n = orExpr(); if (tok[i++] !== ')') throw Error('Paréntesis sin cerrar.'); return n; }
+      if (x === '1' || x === 'TRUE') return {op:'const',v:true};
+      if (x === '0' || x === 'FALSE') return {op:'const',v:false};
+      if (ident.test(x) && !['AND','OR','NOT'].includes(x) && !forbidden.has(x)) return {op:'var',key:x};
+      throw Error('Token inesperado: '+x);
+    }
+    function andExpr() {let left=primary();while(tok[i]==='AND'){i++;left={op:'and',left,right:primary()};}return left;}
+    function orExpr() {let left=andExpr();while(tok[i]==='OR'){i++;left={op:'or',left,right:andExpr()};}return left;}
+    const result=orExpr();if(i!==tok.length)throw Error('Receptividad mal formada cerca de '+tok[i]);return result;
+  };
+  const variables = ast => {
+    const set=new Set();
+    function visit(n){if(n.op==='var')set.add(n.key);else if(n.op==='not')visit(n.child);else if(n.op==='and'||n.op==='or'){visit(n.left);visit(n.right);}}
+    visit(ast);return [...set];
+  };
+  function evalCondition(ast, inputs) {
+    switch(ast.op){
+      case 'var':return inputs[ast.key] === true;
+      case 'const':return ast.v;
+      case 'not':return !evalCondition(ast.child,inputs);
+      case 'and':return evalCondition(ast.left,inputs)&&evalCondition(ast.right,inputs);
+      case 'or':return evalCondition(ast.left,inputs)||evalCondition(ast.right,inputs);
+      default:throw Error('Nodo de expresión inválido');
+    }
+  }
+  const parseNames = text => [...new Set(String(text||'').split(',').map(s=>s.trim()).filter(Boolean))];
+  const collectInputs = model => {
+    const next=Object.create(null);
+    for(const transition of model.transitions) for(const name of variables(parseCondition(transition.condition)))
+      next[name]=model.inputs && model.inputs[name]===true;
+    return next;
+  };
+  function validateModel(model) {
+    if(!model || typeof model!=='object'||Array.isArray(model) ||model.schema!==VERSION)throw Error('Proyecto GRAFCET incompatible (esquema 1).');
+    if(typeof model.name!=='string'||!model.name.trim()||model.name.length>90)throw Error('El nombre del proyecto no es válido.');
+    if(!Array.isArray(model.stages)||!model.stages.length||model.stages.length>MAX_STAGES)throw Error('Se requieren de 1 a 40 etapas.');
+    if(!Array.isArray(model.transitions)||model.transitions.length>MAX_TRANSITIONS)throw Error('Máximo 80 transiciones.');
+    const ids=new Set();let initial=0;
+    for(const s of model.stages){
+      if(!s||typeof s.id!=='string'||!stageId.test(s.id)||ids.has(s.id))throw Error('Identificador de etapa duplicado o inválido.');ids.add(s.id);
+      if(typeof s.name!=='string'||s.name.length>100)throw Error('Nombre de etapa inválido en '+s.id);
+      if(typeof s.initial!=='boolean')throw Error('Estado inicial inválido en '+s.id);
+      if(s.initial)initial++;
+      if(!Number.isFinite(s.x)||!Number.isFinite(s.y)||s.x<40||s.x>1900||s.y<40||s.y>2800)throw Error('Coordenadas de etapa inválidas.');
+      if(!Array.isArray(s.actions)||s.actions.length>15||s.actions.some(a=>typeof a!=='string'||!stageId.test(a)||forbidden.has(a)))throw Error('Salidas inválidas en '+s.id);
+    }
+    if(!initial)throw Error('El proyecto requiere alguna etapa inicial.');
+    if(typeof model.description!=='undefined'&&(typeof model.description!=='string'||model.description.length>300))throw Error('Descripción de proyecto inválida.');
+    const tids=new Set();const iMap=model.inputs;
+    if(!iMap||typeof iMap!=='object'||Array.isArray(iMap)||Object.keys(iMap).length>60)throw Error('Entradas digitales inválidas.');
+    for(const [name,value] of Object.entries(iMap))if(!ident.test(name)||forbidden.has(name)||typeof value!=='boolean')throw Error('Entrada inválida: '+name);
+    for(const t of model.transitions){
+      if(!t||typeof t.id!=='string'||!stageId.test(t.id)||tids.has(t.id))throw Error('Identificador de transición duplicado o inválido.');tids.add(t.id);
+      if(typeof t.name!=='string'||t.name.length>100)throw Error('Nombre de transición inválido.');
+      for(const key of ['from','to']){
+        const refs=t[key];if(!Array.isArray(refs)||!refs.length||refs.length>15||new Set(refs).size!==refs.length||refs.some(id=>!ids.has(id)))throw Error('Etapas '+key+' inválidas en '+t.id);
+      }
+      const ast=parseCondition(t.condition);
+      for(const v of variables(ast))if(!Object.prototype.hasOwnProperty.call(iMap,v))throw Error('Entrada no declarada: '+v+' en '+t.id);
+    }
+    return true;
+  }
+  const outputState = (model,active) => [...new Set(model.stages.filter(s=>active.includes(s.id)).flatMap(s=>s.actions))].sort();
+  const initialState = model => {validateModel(model);const active=model.stages.filter(s=>s.initial).map(s=>s.id);return {active,outputs:outputState(model,active),cycle:0,last:[],conflict:[],status:'ready'};};
+  function preview(model,state) {
+    validateModel(model);const current=new Set(state.active);
+    return model.transitions.map(t=>({id:t.id,
+      structural:t.from.every(s=>current.has(s)),
+      receptivity:evalCondition(parseCondition(t.condition),model.inputs),
+      enabled:t.from.every(s=>current.has(s)) && evalCondition(parseCondition(t.condition),model.inputs)}));
+  }
+  function explain(model,state){
+    const status=preview(model,state);
+    return model.transitions.map((t,i)=>({
+      id:t.id, name:t.name, condition:t.condition,
+      from:t.from.slice(), to:t.to.slice(),
+      missing:t.from.filter(id=>!state.active.includes(id)),
+      structural:status[i].structural, receptivity:status[i].receptivity,
+      enabled:status[i].enabled,
+      verdict:status[i].enabled?'HABILITADA':status[i].structural?'RECEPTIVIDAD FALSA':'ETAPAS PRECEDENTES INACTIVAS'
+    }));
+  }
+  // Prueba determinista y sin efectos secundarios: útil para verificar ciclos.
+  function runScenario(model,steps,initialInputs){
+    validateModel(model);
+    if(!Array.isArray(steps)||steps.length>200)throw Error('El escenario admite como máximo 200 pasos.');
+    let copy=JSON.parse(JSON.stringify(model));
+    if(initialInputs!==undefined){
+      if(!initialInputs||typeof initialInputs!=='object'||Array.isArray(initialInputs))throw Error('Entradas iniciales inválidas.');
+      for(const [name,value] of Object.entries(initialInputs)){
+        if(!Object.prototype.hasOwnProperty.call(copy.inputs,name)||typeof value!=='boolean')throw Error('Entrada de escenario inválida: '+name);
+        copy.inputs[name]=value;
+      }
+    }
+    let current=initialState(copy),results=[];
+    for(const [i,step] of steps.entries()){
+      if(!step||typeof step!=='object'||Array.isArray(step)||!step.inputs||typeof step.inputs!=='object'||Array.isArray(step.inputs))
+        throw Error('Paso '+(i+1)+' inválido.');
+      for(const [name,value] of Object.entries(step.inputs)){
+        if(!Object.prototype.hasOwnProperty.call(copy.inputs,name)||typeof value!=='boolean')throw Error('Entrada de escenario inválida: '+name);
+        copy.inputs[name]=value;
+      }
+      const before=current.active.slice();current=advance(copy,current);
+      const expected=step.expectActive;
+      if(expected!==undefined&&(!Array.isArray(expected)||expected.some(x=>typeof x!=='string')))throw Error('Expectativa inválida en paso '+(i+1));
+      const ok=expected===undefined||JSON.stringify(current.active.slice().sort())===JSON.stringify(expected.slice().sort());
+      results.push({step:i+1,before,active:current.active.slice(),outputs:current.outputs.slice(),
+        fired:current.last.slice(),status:current.status,ok});
+      if(current.status==='conflict')break;
+    }
+    return {ok:results.every(r=>r.ok&&r.status!=='conflict'),results,final:current};
+  }
+  function advance(model,state){
+    const entries=preview(model,state);const enabled=entries.filter(e=>e.enabled).map(e=>e.id);
+    if(!enabled.length)return {...state,last:[],conflict:[],status:'waiting',cycle:state.cycle+1};
+    const selected=model.transitions.filter(t=>enabled.includes(t.id));
+    // La divergencia O debe excluir condiciones mutuamente activas. No se elige
+    // arbitrariamente una rama para evitar una simulación engañosa.
+    const consumed=new Set(),conflict=new Set();
+    for(const t of selected)for(const id of t.from){if(consumed.has(id)){for(const other of selected.filter(x=>x.from.includes(id)))conflict.add(other.id);}consumed.add(id);}
+    if(conflict.size)return {...state,last:[],conflict:[...conflict],status:'conflict',cycle:state.cycle+1};
+    const next=new Set(state.active);for(const t of selected)for(const id of t.from)next.delete(id);
+    for(const t of selected)for(const id of t.to)next.add(id);
+    const active=model.stages.filter(s=>next.has(s.id)).map(s=>s.id);
+    return {active,outputs:outputState(model,active),cycle:state.cycle+1,last:enabled,conflict:[],status:'fired'};
+  }
+  function diagnostics(model){
+    validateModel(model);const found=new Set(model.stages.filter(s=>s.initial).map(s=>s.id));let changed=true;
+    while(changed){changed=false;for(const t of model.transitions)if(t.from.every(id=>found.has(id))){for(const id of t.to)if(!found.has(id)){found.add(id);changed=true;}}}
+    const issues=[];for(const s of model.stages)if(!found.has(s.id))issues.push(`Etapa ${s.id} inaccesible desde el estado inicial (análisis estructural).`);
+    for(const s of model.stages)if(!model.transitions.some(t=>t.from.includes(s.id)))issues.push(`${s.id} no tiene transición de salida.`);
+    for(const t of model.transitions){
+      if(t.from.length===t.to.length && t.from.every(id=>t.to.includes(id)))
+        issues.push(`${t.id} devuelve exactamente las mismas etapas; comprueba el bucle.`);
+      if(t.condition.trim()==='0'||t.condition.trim().toUpperCase()==='FALSE')
+        issues.push(`${t.id} tiene receptividad constante falsa (0): nunca se disparará.`);
+    }
+    for(const [i,t] of model.transitions.entries())for(const other of model.transitions.slice(i+1)){
+      if(t.from.some(id=>other.from.includes(id)))issues.push(`${t.id} y ${other.id} comparten etapa(s) precedente(s): comprueba la exclusividad de sus receptividades.`);
+    }
+    return issues;
+  }
+  const sample = () => ({
+    schema:1,name:'Ciclo de envasado · demostración',description:'Secuencia didáctica sin conexión a PLC físico.',
+    stages:[
+      {id:'E0',name:'Espera de marcha',actions:['LISTO'],initial:true,x:340,y:85},
+      {id:'E1',name:'Carga de producto',actions:['MOTOR_CINTA','VALVULA_CARGA'],initial:false,x:340,y:270},
+      {id:'E2',name:'Sellado de bolsa',actions:['RESISTENCIA_SELLO'],initial:false,x:340,y:455},
+      {id:'E3',name:'Expulsión',actions:['EXPULSOR'],initial:false,x:340,y:640}
+    ],
+    transitions:[
+      {id:'T0',name:'Arranque autorizado',from:['E0'],to:['E1'],condition:'marcha AND seguridad'},
+      {id:'T1',name:'Carga completada',from:['E1'],to:['E2'],condition:'carga_terminada'},
+      {id:'T2',name:'Fin de sellado',from:['E2'],to:['E3'],condition:'sellado_terminado AND seguridad'},
+      {id:'T3',name:'Caja retirada',from:['E3'],to:['E0'],condition:'caja_fuera'}
+    ],
+    inputs:{marcha:false,seguridad:true,carga_terminada:false,sellado_terminado:false,caja_fuera:false}
+  });
+  return Object.freeze({VERSION,parseCondition,variables,evalCondition,parseNames,collectInputs,validateModel,outputState,initialState,preview,explain,runScenario,advance,diagnostics,sample});
+});
+
+</script><script>
+/* SPDX-License-Identifier: MIT · Copyright (c) 2026 MS ROBOTIKA
+   Editor interactivo GRAFCET, representación SVG y simulación local. */
+(() => {
+'use strict';
+const E=window.ABGrafcet, $=id=>document.getElementById(id), S='http://www.w3.org/2000/svg';
+const PROJECT_KEY='ab-grafcet-studio-project-v1';
+const MAX_UNDO=40,MAX_BACK=200;
+const copy=x=>JSON.parse(JSON.stringify(x));
+let undoStack=[],redoStack=[],simHistory=[];
+let model=E.sample(),state=E.initialState(model),chosen={type:'stage',id:'E1'},events=[],timer=null,drag=null;
+const stamp=()=>new Date().toLocaleTimeString('es-ES',{hour12:false});
+function notify(message,kind='info'){$('notice').textContent=message;$('notice').classList.toggle('error',kind==='error');}
+function log(message,kind='info',detail=''){
+  events.unshift({date:new Date().toISOString(),time:stamp(),message,kind,detail});events=events.slice(0,150);renderHistory();
+}
+function persist(){try{localStorage.setItem(PROJECT_KEY,JSON.stringify(model));}catch(_){/* almacenamiento deshabilitado */}}
+function stop(){if(timer){clearInterval(timer);timer=null;$('run').textContent='▷ Auto · 1s';$('run').classList.remove('primary');}}
+function replaceModel(next,notice){stop();E.validateModel(next);undoStack=[];redoStack=[];simHistory=[];model=copy(next);state=E.initialState(model);chosen={type:'stage',id:model.stages[0].id};persist();renderAll();log('Proyecto inicializado','info',notice);notify(notice);}
+function saveEdited(next,message){
+  try{E.validateModel(next);stop();undoStack.push(copy(model));if(undoStack.length>MAX_UNDO)undoStack.shift();redoStack=[];simHistory=[];model=next;state=E.initialState(model);persist();renderAll();log(message,'info','La simulación se reinicia después de modificar el esquema.');notify(message);}catch(ex){notify(ex.message,'error');}
+}
+function undoEdit(direction){
+  stop();const source=direction==='undo'?undoStack:redoStack;
+  const dest=direction==='undo'?redoStack:undoStack;
+  if(!source.length){notify('No quedan modificaciones que '+(direction==='undo'?'deshacer.':'rehacer.'));return;}
+  dest.push(copy(model));if(dest.length>MAX_UNDO)dest.shift();
+  model=source.pop();state=E.initialState(model);simHistory=[];
+  chosen={type:'stage',id:model.stages[0].id};persist();renderAll();
+  $('sim-message').textContent='Esquema restaurado; simulación reiniciada.';
+  log(direction==='undo'?'Modificación deshecha':'Modificación rehecha');
+  notify(direction==='undo'?'Se restauró la versión anterior del esquema.':'Modificación rehecha correctamente.');
+}
+function backStep(){
+  stop();if(!simHistory.length){notify('No hay más ciclos que retroceder.');return;}
+  const snapshot=simHistory.pop();state=snapshot.state;model.inputs=snapshot.inputs;
+  persist();renderDiagram();renderMetrics();renderOutputs();renderInputs();renderTransitionTable();
+  $('sim-message').textContent='Restaurado el estado anterior al último avance.';
+  $('sim-message').classList.remove('warn');
+  log('Ciclo anterior recuperado','info','Marcado: '+state.active.join(', '));
+  notify('Simulación retrocedida un ciclo, con sus entradas anteriores.');
+}
+function node(tag,attrs={},txt){const x=document.createElementNS(S,tag);for(const [k,v] of Object.entries(attrs))x.setAttribute(k,String(v));if(txt!==undefined)x.textContent=String(txt);return x;}
+function html(tag,txt,cls){const x=document.createElement(tag);if(txt!==undefined)x.textContent=String(txt);if(cls)x.className=cls;return x;}
+function byId(id){return model.stages.find(x=>x.id===id);}
+function center(ids){const p=ids.map(byId).filter(Boolean);return {x:p.reduce((n,s)=>n+s.x,0)/p.length,y:p.reduce((n,s)=>n+s.y,0)/p.length};}
+function geometry(t){const from=center(t.from),to=center(t.to),back=to.y<=from.y+35;return {from,to,back,x:back?650:(from.x+to.x)/2,y:(from.y+to.y)/2};}
+function arrow(svg,x1,y1,x2,y2,active,back=false){
+  const stroke=active?'#139573':'#a6bac6';let d;
+  if(back){const pathX=Math.max(x1,x2,660);d=`M${x1} ${y1} L${pathX} ${y1} L${pathX} ${y2} L${x2} ${y2}`;}
+  else d=`M${x1} ${y1} L${x2} ${y2}`;
+  svg.append(node('path',{d,fill:'none',stroke,'stroke-width':active?2.8:1.8,'marker-end':'url(#arrowhead)','stroke-linejoin':'round'}));
+}
+function renderDiagram(){
+  const svg=$('diagram');svg.replaceChildren();let maxY=Math.max(760,...model.stages.map(s=>s.y+80));
+  const viewHeight=Math.max(810,maxY+50);svg.setAttribute('viewBox',`0 0 850 ${viewHeight}`);
+  svg.style.height=Math.max(610,viewHeight*0.75)+'px';
+  const defs=node('defs'),marker=node('marker',{id:'arrowhead',viewBox:'0 0 10 10',refX:8,refY:5,markerWidth:5,markerHeight:5,orient:'auto-start-reverse'});
+  marker.append(node('path',{d:'M0 0 L10 5 L0 10',fill:'#8fa9b6'}));defs.append(marker);
+  const grid=node('pattern',{id:'grid',width:24,height:24,patternUnits:'userSpaceOnUse'});grid.append(node('circle',{cx:1,cy:1,r:.7,fill:'#d9e3e8'}));defs.append(grid);svg.append(defs);
+  svg.append(node('rect',{width:850,height:viewHeight,fill:'url(#grid)'}));
+  const previews=E.preview(model,state),active=new Set(state.active);
+  for(const t of model.transitions){
+    const g=geometry(t),on=previews.find(x=>x.id===t.id).enabled;
+    for(const id of t.from){const p=byId(id);arrow(svg,g.back?p.x+67:p.x,g.back?p.y:p.y+32,g.back?g.x-34:g.x,g.back?g.y:g.y-13,on,false);}
+    for(const id of t.to){const p=byId(id);arrow(svg,g.x,g.y+13,g.back?p.x+67:p.x,g.back?p.y:p.y-32,on,g.back);}
+  }
+  for(const s of model.stages){
+    const on=active.has(s.id),selected=chosen.type==='stage'&&chosen.id===s.id;
+    const g=node('g',{class:'stage',transform:`translate(${s.x} ${s.y})`,tabindex:0,role:'button','aria-label':`Etapa ${s.id}, ${s.name}${on?', activa':''}`,'data-id':s.id});
+    if(selected)g.append(node('rect',{x:-74,y:-39,width:148,height:78,rx:11,fill:'#d9f4e9','fill-opacity':.7,stroke:'#77d2b3','stroke-width':1.5}));
+    g.append(node('rect',{class:'stage-box',x:-66,y:-32,width:132,height:64,rx:7,fill:on?'#14866d':'#fff',stroke:on?'#0e8066':'#9eb7c3','stroke-width':s.initial?3:2}));
+    if(s.initial)g.append(node('rect',{x:-61,y:-27,width:122,height:54,rx:4,fill:'none',stroke:on?'#a9f6d7':'#94abba','stroke-width':1.1}));
+    g.append(node('text',{x:0,y:-7,'text-anchor':'middle',fill:on?'white':'#2b5262','font-size':14,'font-family':'Consolas,monospace','font-weight':800},s.id));
+    let label=s.name.length>21?s.name.slice(0,20)+'…':s.name;
+    g.append(node('text',{x:0,y:13,'text-anchor':'middle',fill:on?'#d7ffed':'#718b9a','font-size':11},label));
+    if(s.actions.length){
+      const action=node('g',{transform:'translate(80 -22)'});const acWidth=178;
+      const aHeight=Math.min(s.actions.length,3)*19+8;
+      action.append(node('rect',{x:0,y:0,width:acWidth,height:aHeight,rx:6,fill:on?'#e4f7ee':'#fff',stroke:on?'#a8e5c7':'#dce7ec'}));
+      s.actions.slice(0,3).forEach((item,i)=>action.append(node('text',{x:10,y:18+i*19,'font-size':9.5,fill:on?'#0c795f':'#8097a4','font-family':'Consolas,monospace'},item)));
+      g.append(action);
+    }
+    g.addEventListener('click',()=>select('stage',s.id));g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select('stage',s.id);}});
+    g.addEventListener('pointerdown',e=>{if(e.button!==0)return;drag={id:s.id,x0:s.x,y0:s.y,mouseX:e.clientX,mouseY:e.clientY,group:g,moved:false};});
+    svg.append(g);
+  }
+  for(const t of model.transitions){
+    const g=geometry(t),on=previews.find(x=>x.id===t.id).enabled,selected=chosen.type==='transition'&&chosen.id===t.id;
+    const el=node('g',{class:'transition',tabindex:0,role:'button','aria-label':`Transición ${t.id} ${t.condition}`,'data-id':t.id});
+    if(selected)el.append(node('rect',{x:g.x-31,y:g.y-17,width:62,height:34,rx:6,fill:'#fff2de',stroke:'#eabc75'}));
+    el.append(node('rect',{class:'transition-bar',x:g.x-24,y:g.y-6,width:48,height:12,rx:2,fill:on?'#e0a346':'#7794a5',stroke:on?'#bd8127':'#68899b','stroke-width':1.3}));
+    el.append(node('text',{x:g.x-34,y:g.y+4,'text-anchor':'end','font-size':11,'font-weight':800,fill:'#506c7a'},t.id));
+    const text=t.condition.length>26?t.condition.slice(0,25)+'…':t.condition;
+    el.append(node('text',{x:g.x+36,y:g.y+4,'font-family':'Consolas,monospace','font-size':10,fill:on?'#b07e37':'#718b9b'},text));
+    el.addEventListener('click',()=>select('transition',t.id));
+    el.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();select('transition',t.id);}});
+    svg.append(el);
+  }
+  $('diagram-details').textContent=`${model.stages.length} etapas · ${model.transitions.length} transiciones · ${model.stages.filter(s=>s.initial).length} inicial(es)`;
+  $('select-info').textContent=chosen.id?`${chosen.type==='stage'?'Etapa':'Transición'} ${chosen.id} seleccionada`:'Selecciona un elemento';
+}
+function svgPoint(event){const svg=$('diagram');const p=svg.createSVGPoint();p.x=event.clientX;p.y=event.clientY;const m=svg.getScreenCTM();if(!m)return {x:0,y:0};return p.matrixTransform(m.inverse());}
+function onDrag(event){if(!drag)return;const svg=$('diagram'),m=svg.getScreenCTM();if(!m)return;
+  const scaleX=m.a||1,scaleY=m.d||1;const dx=(event.clientX-drag.mouseX)/scaleX,dy=(event.clientY-drag.mouseY)/scaleY;
+  if(Math.abs(dx)+Math.abs(dy)>4)drag.moved=true;
+  if(drag.moved)drag.group.setAttribute('transform',`translate(${Math.max(70,Math.min(800,drag.x0+dx))} ${Math.max(65,Math.min(2750,drag.y0+dy))})`);
+}
+function endDrag(event){if(!drag)return;const d=drag;drag=null;if(!d.moved)return;const svg=$('diagram'),m=svg.getScreenCTM();if(!m)return;
+  const dx=(event.clientX-d.mouseX)/(m.a||1),dy=(event.clientY-d.mouseY)/(m.d||1);
+  undoStack.push(copy(model));if(undoStack.length>MAX_UNDO)undoStack.shift();redoStack=[];simHistory=[];
+  const s=byId(d.id);s.x=Math.round(Math.max(70,Math.min(800,d.x0+dx))/10)*10;s.y=Math.round(Math.max(65,Math.min(2750,d.y0+dy))/10)*10;
+  persist();renderDiagram();renderTransitionTable();log('Etapa recolocada','info',`${d.id} → (${s.x}, ${s.y})`);
+}
+function select(type,id){chosen={type,id};renderDiagram();renderInspector();}
+function field(label,id,value,help='',opts={}){const l=html('label',label);l.htmlFor=id;const f=opts.textarea?html('textarea'):html('input');f.id=id;f.value=value;if(!opts.textarea)f.type='text';f.maxLength=opts.maxLength||256;l.append(f);if(help)l.append(html('small',help,'field-hint'));return l;}
+function renderInspector(){const target=$('inspector-content');target.replaceChildren();
+  const selected=chosen.type==='stage'?byId(chosen.id):model.transitions.find(t=>t.id===chosen.id);
+  if(!selected){target.append(html('p','Selecciona una etapa o transición en el diagrama para editarla.'));return;}
+  const isStage=chosen.type==='stage';target.append(html('div',isStage?'ETAPA / ACCIONES':'TRANSICIÓN / RECEPTIVIDAD','editable-title'));
+  target.append(html('span',selected.id,'badge-id'));
+  target.append(field('Descripción del elemento','edit-name',selected.name,'Nombre visible en el esquema',{maxLength:100}));
+  if(isStage){
+    target.append(field('Salidas asignadas','edit-actions',selected.actions.join(', '),'Separadas por comas: MOTOR, VALVULA, LUZ. Solo simuladas.'));
+    const line=html('label',undefined,'checkbox-line'),chk=html('input');chk.id='edit-initial';chk.type='checkbox';chk.checked=selected.initial;
+    line.append(chk,html('span','Etapa inicial (activa tras reiniciar)'));target.append(line);
+    target.append(html('p',`Posición: x=${selected.x} · y=${selected.y}. Puedes moverla arrastrando su símbolo.`, 'list-note'));
+  } else {
+    target.append(field('Etapas de origen','edit-from',selected.from.join(', '),'Una o varias, separadas por comas. Ej.: E0, E1'));
+    target.append(field('Etapas de destino','edit-to',selected.to.join(', '),'Una o varias, separadas por comas. Ej.: E2'));
+    target.append(field('Receptividad booleana','edit-condition',selected.condition,'Ej.: marcha AND seguridad; NOT fallo; 1.'));
+    const preview=html('div',undefined,'list-note');preview.textContent='Las variables nuevas se crearán automáticamente como entradas digitales apagadas.';target.append(preview);
+  }
+  const btns=html('div',undefined,'edit-actions'),save=html('button','Guardar cambios','button primary'),del=html('button','Eliminar','button delete');save.type=del.type='button';
+  save.addEventListener('click',()=>{
+    const copy=JSON.parse(JSON.stringify(model));const item=(isStage?copy.stages:copy.transitions).find(x=>x.id===selected.id);
+    item.name=$('edit-name').value.trim();
+    if(isStage){item.actions=E.parseNames($('edit-actions').value).map(x=>x.toUpperCase());item.initial=$('edit-initial').checked;}
+    else{item.from=E.parseNames($('edit-from').value);item.to=E.parseNames($('edit-to').value);item.condition=$('edit-condition').value.trim();
+      try{copy.inputs=E.collectInputs(copy);}catch(ex){notify(ex.message,'error');return;}}
+    saveEdited(copy,`Cambios guardados en ${item.id}.`);
+  });
+  del.addEventListener('click',()=>{
+    const copy=JSON.parse(JSON.stringify(model));
+    if(isStage){if(copy.stages.length===1){notify('No puedes eliminar la última etapa.','error');return;}
+      copy.stages=copy.stages.filter(x=>x.id!==selected.id);copy.transitions=copy.transitions.filter(t=>!t.from.includes(selected.id)&&!t.to.includes(selected.id));
+    }else copy.transitions=copy.transitions.filter(t=>t.id!==selected.id);
+    try{copy.inputs=E.collectInputs(copy);}catch(e){notify(e.message,'error');return;}
+    chosen={type:'stage',id:copy.stages[0].id};saveEdited(copy,`${selected.id} eliminado del GRAFCET.`);
+  });
+  btns.append(save,del);target.append(btns);
+}
+function renderInputs(){const target=$('inputs');target.replaceChildren();
+  const names=Object.keys(model.inputs).sort();if(!names.length)target.append(html('div','Este proyecto no utiliza entradas.','empty'));
+  for(const name of names){const btn=html('button',undefined,'signal-row'+(model.inputs[name]?' on':''));btn.type='button';btn.setAttribute('aria-pressed',String(model.inputs[name]));btn.setAttribute('aria-label',`${name}: ${model.inputs[name]?'activo':'inactivo'}`);
+    btn.append(html('span',name,'signal-label'),html('span',model.inputs[name]?'ON':'OFF','state'),html('span',undefined,'switch'));
+    btn.addEventListener('click',()=>{model.inputs[name]=!model.inputs[name];persist();renderInputs();renderDiagram();renderTransitionTable();log('Entrada modificada','info',name+' = '+(model.inputs[name]?'1':'0'));notify(`${name}: ${model.inputs[name]?'ACTIVADA':'DESACTIVADA'}. Pulsa avanzar para evaluar las transiciones.`);});
+    target.append(btn);
+  }
+}
+function renderOutputs(){const target=$('outputs');target.replaceChildren();const all=[...new Set(model.stages.flatMap(s=>s.actions))].sort();
+  if(!all.length)target.append(html('div','No hay salidas asociadas a las etapas.','empty'));
+  for(const name of all){const on=state.outputs.includes(name);target.append(html('span',`${on?'●':'○'} ${name}`,'output'+(on?' on':'')));}
+}
+function renderTransitionTable(){
+  const target=$('transition-table');if(!target)return;target.replaceChildren();
+  const entries=E.explain(model,state);
+  for(const item of entries){
+    const row=html('div',undefined,'reason-row'+(item.enabled?' ready':''));
+    const main=html('div',undefined,'reason-main');
+    main.append(html('b',item.id+' · '+item.name),html('small',item.from.join(' + ')+' → '+item.to.join(' + ')));
+    const reason=html('div',undefined,'reason-explain');
+    reason.append(html('span',item.condition,'reason-expression'));
+    reason.append(html('span',item.enabled?'LISTA':item.missing.length?'FALTAN: '+item.missing.join(', '):'CONDICIÓN FALSA',
+      'reason-state'+(item.enabled?' green':'')));
+    row.append(main,reason);target.append(row);
+  }
+  if(!entries.length)target.append(html('div','Aún no hay transiciones.','empty'));
+}
+function renderHistory(){const target=$('history');target.replaceChildren();
+  if(!events.length){target.append(html('div','Todavía no hay eventos.','empty'));return;}
+  for(const evt of events.slice(0,60)){const row=html('div',undefined,'event'+(evt.kind==='warning'?' warning':''));const icon=html('span',evt.kind==='warning'?'!':'↳','event-icon');
+    const body=html('div',undefined,'event-main');body.append(html('strong',evt.message),html('small',evt.detail));const time=html('time',evt.time);row.append(icon,body,time);target.append(row);
+  }
+}
+function renderDiagnostic(){const target=$('diagnostic-list');target.replaceChildren();try{E.validateModel(model);const issues=E.diagnostics(model);
+  target.append(html('div','✓ Estructura, referencias e identificadores correctos','check'));
+  target.append(html('div','✓ Receptividades booleanas válidas','check'));
+  target.append(html('div',`✓ ${model.stages.filter(s=>s.initial).length} etapa(s) inicial(es)`,'check'));
+  for(const issue of issues)target.append(html('div','⚠ '+issue,'issue'));
+  if(!issues.length)target.append(html('div','✓ Sin etapas inaccesibles detectadas','check'));
+}catch(err){target.append(html('div','✕ '+err.message,'error-box'));}}
+function renderMetrics(){const status=state.status==='conflict'?'CONFLICTO':state.status==='fired'?'EVOLUCIONÓ':state.status==='waiting'?'ESPERANDO':'LISTO';
+  $('metric-active').textContent=state.active.length;$('active-label').textContent=state.active.join(', ')||'ninguna';
+  $('metric-transitions').textContent=String(model.transitions.length).padStart(2,'0');
+  $('metric-outputs').textContent=String(state.outputs.length).padStart(2,'0');
+  $('output-label').textContent=state.outputs.length?state.outputs.slice(0,2).join(', '):'sin salidas';
+  $('metric-status').textContent=status;$('metric-status').classList.toggle('error',state.status==='conflict');
+  $('metric-cycles').textContent=`Ciclo ${state.cycle} · ${state.status==='conflict'?'simulación bloqueada':'simulación local'}`;
+}
+function renderAll(){renderDiagram();renderInspector();renderInputs();renderOutputs();renderHistory();renderDiagnostic();renderMetrics();renderTransitionTable();
+  $('project-name').value=model.name;$('project-desc').value=model.description||'';}
+function advance(){try{const next=E.advance(model,state);simHistory.push({state:copy(state),inputs:copy(model.inputs)});if(simHistory.length>MAX_BACK)simHistory.shift();state=next;renderDiagram();renderMetrics();renderOutputs();renderTransitionTable();
+  const m=$('sim-message');m.classList.toggle('warn',state.status==='conflict');
+  if(state.status==='fired'){m.textContent=`Transición(es) ${state.last.join(', ')} disparada(s). Etapas activas: ${state.active.join(', ')}.`;log('Evolución de etapas','info',`${state.last.join(', ')} → ${state.active.join(', ')} · salidas: ${state.outputs.join(', ')||'ninguna'}`);notify('Simulación actualizada sin comunicaciones físicas.');}
+  else if(state.status==='conflict'){m.textContent='CONFLICTO: transiciones '+state.conflict.join(', ')+' compiten por una misma etapa. Cambia las receptividades.';log('Conflicto entre transiciones','warning',m.textContent);notify(m.textContent,'error');stop();}
+  else{m.textContent='No hay transiciones habilitadas con las entradas actuales.';if(!timer)log('Sin evolución','info','Comprueba receptividades y señales de entrada.');}
+}catch(ex){stop();notify(ex.message,'error');log('Error de simulación','warning',ex.message);}}
+function reset(){stop();simHistory=[];state=E.initialState(model);renderDiagram();renderMetrics();renderOutputs();renderTransitionTable();$('sim-message').textContent='Estado inicial restaurado';$('sim-message').classList.remove('warn');log('Secuencia reiniciada','info','Activas: '+state.active.join(', '));notify('GRAFCET reiniciado; las entradas se mantienen.');}
+function nextId(items,prefix){let i=0;while(items.some(x=>x.id===prefix+i))i++;return prefix+i;}
+function addStage(){const copy=JSON.parse(JSON.stringify(model));if(copy.stages.length>=40){notify('Máximo 40 etapas.','error');return;}
+ const id=nextId(copy.stages,'E'),last=copy.stages[copy.stages.length-1];let y=Math.min(2700,last.y+160);if(copy.stages.some(s=>s.x===340&&s.y===y))y=Math.min(2700,y+60);
+ copy.stages.push({id,name:'Nueva etapa',actions:[],initial:false,x:340,y});chosen={type:'stage',id};saveEdited(copy,`${id} creada; edita nombre y acciones en el inspector.`);}
+function addTransition(){const copy=JSON.parse(JSON.stringify(model));if(copy.transitions.length>=80){notify('Máximo 80 transiciones.','error');return;}
+ const id=nextId(copy.transitions,'T'),source=chosen.type==='stage'&&copy.stages.some(x=>x.id===chosen.id)?chosen.id:copy.stages[0].id;
+ const index=copy.stages.findIndex(x=>x.id===source),to=copy.stages[(index+1)%copy.stages.length].id;
+ copy.transitions.push({id,name:'Nueva transición',from:[source],to:[to],condition:'0'});chosen={type:'transition',id};saveEdited(copy,`${id} creada con condición 0 (inactiva hasta que la edites).`);}
+function download(name,content,type){const blob=new Blob([content],{type});const url=URL.createObjectURL(blob),a=html('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);}
+function safeFilename(){return model.name.normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^A-Za-z0-9_-]+/g,'-').replace(/^-|-$/g,'').slice(0,45)||'AB-GRAFCET';}
+function exportSvg(){const orig=$('diagram');const clone=orig.cloneNode(true);clone.setAttribute('xmlns',S);clone.removeAttribute('style');clone.setAttribute('width','850');clone.setAttribute('height',orig.viewBox.baseVal.height);const xml=new XMLSerializer().serializeToString(clone);download(safeFilename()+'.svg',xml,'image/svg+xml;charset=utf-8');notify('SVG del esquema exportado.');}
+function technicalReport(){
+  const escape=x=>String(x??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  const row=values=>'<tr>'+values.map(v=>'<td>'+escape(v)+'</td>').join('')+'</tr>';
+  const issues=E.diagnostics(model);
+  const stages=model.stages.map(s=>row([s.id,s.name,s.initial?'SÍ':'NO',s.actions.join(', ')||'—'])).join('');
+  const transitions=model.transitions.map(t=>row([t.id,t.name,t.from.join(' + '),t.condition,t.to.join(' + ')])).join('');
+  const inputs=Object.entries(model.inputs).map(([key,v])=>row([key,v?'1':'0'])).join('');
+  const notes=issues.length?issues.map(x=>'<li>'+escape(x)+'</li>').join(''):'<li>Sin advertencias estructurales detectadas.</li>';
+  const htmlDoc=`<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Informe GRAFCET · ${escape(model.name)}</title>
+  <style>body{font:15px/1.6 system-ui,sans-serif;color:#203443;max-width:1020px;margin:auto;padding:35px}h1{color:#147b66}h2{border-bottom:2px solid #d9eee6;padding-bottom:6px}table{width:100%;border-collapse:collapse;margin:14px 0 28px}th,td{padding:10px;border:1px solid #dce7e9;text-align:left;vertical-align:top}th{background:#eaf5f1}code{overflow-wrap:anywhere}aside{background:#fff5df;padding:17px;border-radius:8px}footer{color:#768a96;font-size:12px;margin-top:40px}@media print{body{padding:0}h2,table{break-inside:avoid}}</style></head><body>
+  <h1>AB-GRAFCET Studio · informe de especificación</h1><p><b>Proyecto:</b> ${escape(model.name)}</p><p>${escape(model.description||'')}</p>
+  <p><b>Fecha:</b> ${escape(new Date().toISOString())} · <b>Formato:</b> esquema 1 · <b>Versión del programa:</b> 0.2</p>
+  <aside><strong>SOLO ESPECIFICACIÓN Y SIMULACIÓN.</strong> No es un KOP, SFC ni código PLC ejecutable. Verifica en hardware real las funciones de seguridad, enclavamientos, temporizaciones y arquitectura.</aside>
+  <h2>Etapas / acciones virtuales</h2><table><thead><tr><th>ID</th><th>Descripción</th><th>Inicial</th><th>Acciones</th></tr></thead><tbody>${stages}</tbody></table>
+  <h2>Transiciones / receptividades</h2><table><thead><tr><th>ID</th><th>Nombre</th><th>Origen</th><th>Condición</th><th>Destino</th></tr></thead><tbody>${transitions}</tbody></table>
+  <h2>Entradas virtuales</h2><table><thead><tr><th>Identificador</th><th>Valor actual</th></tr></thead><tbody>${inputs}</tbody></table>
+  <h2>Diagnóstico estructural</h2><ul>${notes}</ul>
+  <footer>© 2026 MS ROBOTIKA · Licencia MIT · Generado localmente sin transmisión de datos.</footer></body></html>`;
+  download(safeFilename()+'-informe.html',htmlDoc,'text/html;charset=utf-8');
+  log('Informe técnico exportado','info','Incluye etapas, transiciones, E/S y diagnóstico estructural.');
+  notify('Informe técnico HTML generado. Solo simulación y especificación.');
+}
+function exportCsv(){const lines=[['timestamp_iso','tipo','evento','detalle'].join(',')];const q=x=>'"'+String(x??'').replaceAll('"','""')+'"';for(const e of [...events].reverse())lines.push([e.date,e.kind,e.message,e.detail].map(q).join(','));download(safeFilename()+'-simulacion.csv',lines.join('\r\n')+'\r\n','text/csv;charset=utf-8');}
+function init(){try{const raw=localStorage.getItem(PROJECT_KEY);if(raw){const candidate=JSON.parse(raw);E.validateModel(candidate);model=candidate;state=E.initialState(model);}}catch(_){model=E.sample();state=E.initialState(model);}
+  renderAll();log('Aplicación iniciada','info',model.name+' · simulación local');
+  $('diagram').addEventListener('pointermove',onDrag);window.addEventListener('pointerup',endDrag);
+  $('step').addEventListener('click',advance);$('reset').addEventListener('click',reset);
+  $('back').addEventListener('click',backStep);
+  $('undo-edit').addEventListener('click',()=>undoEdit('undo'));
+  $('redo-edit').addEventListener('click',()=>undoEdit('redo'));
+  $('run').addEventListener('click',()=>{if(timer){stop();notify('Ejecución automática detenida.');return;}
+    timer=setInterval(advance,1000);$('run').textContent='■ Detener auto';$('run').classList.add('primary');log('Automático iniciado','info','Intervalo de simulación: 1000 ms');advance();});
+  $('add-stage').addEventListener('click',addStage);$('add-transition').addEventListener('click',addTransition);
+  $('fit').addEventListener('click',()=>{$('diagram-viewport').scrollTo(0,0);notify('Esquema ajustado al comienzo del lienzo.');});
+  $('clear-log').addEventListener('click',()=>{events=[];renderHistory();log('Historial limpiado');});
+  $('export-log').addEventListener('click',exportCsv);
+  $('save-project').addEventListener('click',()=>{download(safeFilename()+'.json',JSON.stringify(model,null,2),'application/json;charset=utf-8');notify('Proyecto JSON exportado.');});
+  $('export-svg').addEventListener('click',exportSvg);
+  $('export-report').addEventListener('click',technicalReport);
+  $('project-name').addEventListener('change',()=>{const next=JSON.parse(JSON.stringify(model));next.name=$('project-name').value.trim();saveEdited(next,'Nombre de proyecto actualizado.');});
+  $('project-desc').addEventListener('change',()=>{const next=copy(model);next.description=$('project-desc').value;saveEdited(next,'Descripción del proyecto actualizada.');});
+  $('load-demo').addEventListener('click',()=>replaceModel(E.sample(),'Ejemplo de envasado restaurado.'));
+  $('import-project').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{if(f.size>200000)throw Error('Archivo supera 200 KB.');replaceModel(JSON.parse(await f.text()),'Proyecto importado y validado.');}catch(ex){notify('Importación rechazada: '+ex.message,'error');}finally{e.target.value='';}});
+  $('help').addEventListener('click',()=>{$('help-dialog').hidden=false;$('close-help').focus();});
+  $('close-help').addEventListener('click',()=>{$('help-dialog').hidden=true;});
+  $('help-dialog').addEventListener('click',e=>{if(e.target===$('help-dialog'))$('help-dialog').hidden=true;});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')$('help-dialog').hidden=true;
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='z'&&!['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)){e.preventDefault();undoEdit(e.shiftKey?'redo':'undo');}
+    if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()==='y'&&!['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)){e.preventDefault();undoEdit('redo');}
+  });
+  document.addEventListener('visibilitychange',()=>{if(document.hidden)stop();});
+  window.addEventListener('pagehide',stop);
+}
+init();
+})();
+
+</script></body></html>
