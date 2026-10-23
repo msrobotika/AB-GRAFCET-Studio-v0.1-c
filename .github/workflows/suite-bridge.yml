@@ -1,0 +1,33 @@
+name: GRAFCET Suite adapter
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'tools/suite_bridge.mjs'
+      - 'tests/suite-bridge.test.mjs'
+      - 'examples/suite-grafcet-*.json'
+      - '.github/workflows/suite-bridge.yml'
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax
+        run: |
+          node --check src/engine.js
+          node --check tools/suite_bridge.mjs
+      - name: Native engine and local HTTP tests
+        run: node --test tests/suite-bridge.test.mjs
+      - name: Reproducible export
+        run: node tools/suite_bridge.mjs --project examples/suite-grafcet-project.json --scenario examples/suite-grafcet-scenario.json --dry-run
