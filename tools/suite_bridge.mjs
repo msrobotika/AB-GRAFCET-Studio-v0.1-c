@@ -80,7 +80,7 @@ export async function publishStageEvents(events,{url="http://127.0.0.1:4175",tok
     if(item.source!=="ab-grafcet-studio" || item.topic!=="grafcet.stage.changed")
       fail("No se admite publicar otros temas");
     const r=await fetchImpl(url+"/v1/events",{
-      method:"POST",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},
+      method:"POST",redirect:"error",headers:{"Authorization":"Bearer "+token,"Content-Type":"application/json"},
       body:JSON.stringify(item)
     });
     if(!r.ok){

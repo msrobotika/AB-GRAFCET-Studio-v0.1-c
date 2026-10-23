@@ -51,3 +51,14 @@ test("publica contrato real por HTTP a endpoint loopback",async()=>{
     assert.deepEqual(messages.map(x=>x.data.step_id),["E0","E0","E1"]);
   }finally{await new Promise(resolve=>server.close(resolve));}
 });
+
+test("no permite que un redirect copie el token a un host externo",async()=>{
+ const list=compileStageEvents(E.sample(),{schema:1,steps:[{inputs:{marcha:true}}]},"redirect").events;
+ const fake=async(_url,request)=>{
+   assert.equal(request.redirect,"error");
+   throw new TypeError("redirect not followed");
+ };
+ await assert.rejects(()=>publishStageEvents(list,{
+   url:"http://127.0.0.1:4175",token:"a".repeat(64),fetchImpl:fake
+ }),/redirect/);
+});
