@@ -5,8 +5,8 @@
 | Propiedad | Valor |
 |---|---|
 | Área | Editor y simulador GRAFCET |
-| Estado | v0.2 · simulador experimental (repositorio privado) |
-| Visibilidad | privada |
+| Estado | v0.2 · simulador experimental (repositorio público) |
+| Visibilidad | pública |
 | Licencia | MIT declarada en archivo LICENSE |
 | CI | [Workflow](../.github/workflows/grafcet-ci.yml) |
 
