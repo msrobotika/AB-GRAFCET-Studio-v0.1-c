@@ -1,7 +1,7 @@
 # AB-GRAFCET Studio 0.2 · MS ROBOTIKA
 
 > **Ficha del proyecto · MS ROBOTIKA**  
-> **Área:** Editor y simulador GRAFCET · **Estado:** v0.2 · simulador experimental (repositorio privado)  
+> **Área:** Editor y simulador GRAFCET · **Estado:** v0.2 · simulador experimental (repositorio público)  
 > **Evidencia:** [CI y pruebas](https://github.com/msrobotika/AB-GRAFCET-Studio-v0.1-c/actions) · [Capturas](docs/screenshots/) · [Estado técnico](docs/PROJECT_STATUS.md)  
 > **Límite:** No existe exportación certificada KOP/SFC ni conexión física con PLC.
 
@@ -85,3 +85,9 @@ Consulta [la CI](.github/workflows/grafcet-ci.yml) para ver las pruebas y las ca
 `src/engine.js` contiene parser, simulación, diagnóstico y escenarios; `src/app.js` el editor, exportaciones y UI; `src/style.css` el diseño adaptativo; `tests/` las pruebas; `docs/screenshots/` los PNG reales.
 
 Copyright © 2026 **MS ROBOTIKA** · [MIT](LICENSE) · [Hoja de ruta](ROADMAP.md) · [Seguridad](SECURITY.md) · [Cambios](CHANGELOG.md). Desarrollo propio asistido por IA, sin copiar código de herramientas comerciales.
+
+## Integración con AB-Suite Core
+
+El adaptador Node tools/suite_bridge.mjs utiliza nuestro motor nativo para simular proyectos JSON exportados y publicar eventos grafcet.stage.changed autenticados. No duplica el editor, no actúa sobre PLC y no sincroniza automáticamente la pestaña abierta.
+
+[Instrucciones y alcance](docs/SUITE_CORE.md). Tests de adaptador y transporte local en Linux, Windows y macOS.
